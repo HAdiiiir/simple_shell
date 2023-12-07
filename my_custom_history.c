@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * get_history_file - gets the history file
+ * get_my_custom_history_file - gets the history file
  * @info: parameter struct
  *
  * Return: allocated string containg history file
  */
 
-char *get_history_file(info_t *info)
+char *get_my_custom_history_file(info_t *info);
 {
 	char *buf, *dir;
 
@@ -25,19 +25,20 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
+ * write_my_custom_history - creates a file, or appends to an existing file
  * @info: the parameter struct
  *
  * Return: 1 on success, else -1
  */
-int write_history(info_t *info)
+
+int write_my_custom_history(info_t *info);
 {
 	ssize_t fd;
-	char *filename = get_history_file(info);
-	list_t *node = NULL;
+char *filename = get_my_custom_history_file(info);
+list_t *my_custom_history_node = NULL;
 
-	if (!filename)
-		return (-1);
+if (!my_custom_history_filename)
+	return (-1);
 
 	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
@@ -59,7 +60,7 @@ int write_history(info_t *info)
  *
  * Return: histcount on success, 0 otherwise
  */
-int read_history(info_t *info)
+int read_my_custom_history(info_t *info);
 {
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
@@ -103,14 +104,14 @@ int read_history(info_t *info)
 }
 
 /**
- * build_history_list - adds entry to a history linked list
+ * build_my_custom_history_list - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
  * @buf: buffer
  * @linecount: the history linecount, histcount
  *
  * Return: Always 0
  */
-int build_history_list(info_t *info, char *buf, int linecount)
+int build_my_custom_history_list(info_t *info, char *buf, int linecount);
 {
 	list_t *node = NULL;
 
@@ -124,12 +125,12 @@ int build_history_list(info_t *info, char *buf, int linecount)
 }
 
 /**
- * renumber_history - renumbers the history linked list after changes
+ * renumber_my_custom_history - renumbers the history linked list after changes
  * @info: Structure containing potential arguments. Used to maintain
  *
  * Return: the new histcount
  */
-int renumber_history(info_t *info)
+int renumber_my_custom_history(info_t *info);
 {
 	list_t *node = info->history;
 	int i = 0;
